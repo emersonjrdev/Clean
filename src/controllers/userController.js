@@ -33,7 +33,7 @@ const userController = {
         }
     },
 
-    getById: async (req, res) => {
+    getOne: async (req, res) => {
         try {
             const { id } = req.params;
             const user = await userService.getById(id);
@@ -51,7 +51,10 @@ const userController = {
     getAll: async (req, res) => {
         try {
             const users = await userService.getAll();
-            return res.status(200).json(users);
+            return res.status(200).json({
+                msg: 'Todos os usuarios!',
+                users
+            });
         } catch (error) {
             return res.status(500).json({
                 msg: 'Erro ao tentar buscar os usuários'
